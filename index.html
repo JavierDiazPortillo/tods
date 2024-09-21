@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Avanzado de Excel para Finanzas - Javier Díaz Portillo</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --excel-green: #217346;
+            --excel-light-green: #e2efda;
+            --excel-gray: #525252;
+            --white: #ffffff;
+            --black: #000000;
+            --accent-blue: #4472C4;
+            --accent-orange: #ED7D31;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--excel-gray);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+        }
+        
+        /* Header Styles */
+        header {
+            background: transparent;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease-in-out;
+            padding: 1rem 0;
+        }
+        
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--excel-green);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            padding: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: var(--excel-gray);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--excel-green);
+        }
+        
+        /* Hero Section */
+        #hero {
+            background: url('https://cdn.pixabay.com/photo/2020/08/09/14/25/business-5475658_1280.jpg') no-repeat center center/cover; /* Cambia esto por la ruta de tu imagen */
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+        }
+        
+        #hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1;
+        }
+        
+        #hero .hero-content {
+            z-index: 2;
+            max-width: 800px;
+        }
+        
+        #hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        #hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.5s backwards;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--excel-green);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 1s backwards;
+        }
+        
+        .btn:hover {
+            background: var(--accent-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        /* Sections Styling */
+        section {
+            padding: 5rem 0;
+        }
+        
+        section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--excel-green);
+        }
+        
+        /* Course Description */
+        #course-description {
+            background: var(--white);
+        }
+        
+        .course-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 2rem;
+            background: var(--excel-light-green);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .feature i {
+            font-size: 3rem;
+            color: var(--excel-green);
+            margin-bottom: 1rem;
+        }
+        
+        /* Course Modules */
+        #course-modules {
+            background: var(--excel-light-green);
+        }
+        
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .module {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .module:hover {
+            transform: scale(1.03);
+        }
+        
+        .module h3 {
+            color: var(--excel-green);
+            margin-bottom: 1rem;
+        }
+        
+        /* Testimonials */
+        #testimonials {
+            background: url('/api/placeholder/1920/1080') no-repeat center center/cover;
+            color: var(--white);
+            position: relative;
+        }
+        
+        #testimonials::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(33, 115, 70, 0.8);
+            z-index: 1;
+        }
+        
+        .testimonial-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .testimonial img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            border: 3px solid var(--white);
+        }
+        
+        /* CTA Section */
+        #cta {
+            text-align: center;
+            background: var(--excel-green);
+            color: var(--white);
+        }
+        
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            color: var(--white);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            #hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            #hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Excel para Finanzas</div>
+            <ul>
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#course-description">Descripción</a></li>
+                <li><a href="#course-modules">Módulos</a></li>
+                <li><a href="#testimonials">Testimonios</a></li>
+                <li><a href="#cta">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Curso Avanzado de Excel para Finanzas</h1>
+            <p>Aprende a utilizar Excel para maximizar tus decisiones financieras.</p>
+            <a href="#cta" class="btn">Inscríbete Ahora</a>
+        </div>
+    </section>
+    
+    <section id="course-description">
+        <div class="container">
+            <h2>Descripción del Curso</h2>
+            <div class="course-features">
+                <div class="feature">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Análisis Financiero</h3>
+                    <p>Domina las herramientas de análisis para la toma de decisiones.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-table"></i>
+                    <h3>Modelos Financieros</h3>
+                    <p>Crea modelos financieros robustos y precisos.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-calculator"></i>
+                    <h3>Funciones Avanzadas</h3>
+                    <p>Aprende a usar funciones avanzadas de Excel aplicadas a finanzas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="course-modules">
+        <div class="container">
+            <h2>Módulos del Curso</h2>
+            <div class="modules-grid">
+                <div class="module">
+                    <h3>Módulo 1: Introducción a Excel</h3>
+                    <p>Conceptos básicos y herramientas esenciales de Excel.</p>
+                </div>
+                <div class="module">
+                    <h3>Módulo 2: Análisis de Datos</h3>
+                    <p>Uso de tablas dinámicas y gráficos para el análisis de datos.</p>
+                </div>
+                <div class="module">
+                    <h3>Módulo 3: Modelado Financiero</h3>
+                    <p>Construcción de modelos financieros completos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="testimonials">
+        <div class="testimonial-content">
+            <h2>Testimonios</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <img src="girl-8576518_1280.jpg" alt="Testimonio 1">
+                    <p>"El curso me ayudó a mejorar mis habilidades y tomar mejores decisiones financieras."</p>
+                </div>
+                <div class="testimonial">
+                    <img src="freckles-8615662_1280.jpg" alt="Testimonio 2">
+                    <p>"Excel para Finanzas cambió mi forma de ver y manejar mis finanzas."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="cta">
+        <h2>¡Inscríbete Hoy!</h2>
+        <p>Transforma tu carrera con nuestro curso avanzado de Excel para finanzas.</p>
+        <a href="#contact" class="btn">Contáctame</a>
+    </section>
+
+    <a href="https://wa.me/522461389275" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+    </script>
+</body>
+</html>
